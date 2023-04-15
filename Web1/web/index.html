@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p><a href="index.html">link 1</a></p> <!-- GET -->
+        <p><a href="Servlet1">link 2</a></p>
+        <p><a href="Servlet2?count=100">link 3</a></p> <!-- GET -->
+        <div>
+
+            <!--Register information-->
+            <form method="post" action="Servlet3">
+                <input type="text" name="txt" value="testing"/>
+                <select name="job" multiple="">
+                    <option value="1">teacher</option>
+                    <option value="2">student</option>
+                    <option value="3">others</option>
+                </select>
+                <p>
+                    <input type="radio" value="female" name="gender"/>female
+                    <input type="radio" value="male" name="gender"/>male
+
+                </p>
+                <input type="submit" name="btnaction" value="Click me"/>
+
+            </form>
+        </div>
+
+    </body>
+</html>
