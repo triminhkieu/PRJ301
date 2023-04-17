@@ -43,7 +43,7 @@ public class addItem extends HttpServlet {
             } else {
                 //search id to see that is exit or not
                 if (gh.containsKey(id)) {
-                    int quantity = gh.get(id);
+                    int quantity = gh.get(id); // lay value của thang co id
                     quantity++;
                     //fix quantity of id 
                     gh.put(id, quantity);

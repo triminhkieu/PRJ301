@@ -27,20 +27,23 @@
                     Item it = ItemDao.getItem(Integer.parseInt(id));
             %>
             <tr>
-                <td><%= id %></td>
-                <td><%= it.getName() %></td>
-                <td><%= it.getPrice() %></td>
-                <td><input type="number" value="<%= kq.get(id) %>"/></td>
+            <form action="MainController2">
+                <input type="hidden" value="<%= id %>" name="itemid"/>
+                <td><%= id%></td>
+                <td><%= it.getName()%></td>
+                <td><%= it.getPrice()%></td>
+                <td><input type="number" value="<%= kq.get(id)%>" name="quantity" min="1"/></td>
                 <td><input type="submit" name="action" value="edit"/></td>
+            </form>
             </tr>
-            <%
+        <%
                 sum = sum + it.getPrice() * kq.get(id);
-                }
-            %>
-        </table>
-        <p>Total:<%= sum %></p>
-        <%            }
-
+            }
         %>
-    </body>
+    </table>
+    <p>Total:<%= sum%></p>
+    <%            }
+
+    %>
+</body>
 </html>
