@@ -11,12 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.CategoryDao;
 
 /**
  *
  * @author Admin
  */
-public class MainController2 extends HttpServlet {
+public class UpdateCategory extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +33,13 @@ public class MainController2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String url = "getAllItems";
-            String ac = request.getParameter("action");
-            if (ac == null) {
-                url = "getAllItems";
-            }
-            else if (ac.equals("add")) {
-                url = "addItem";
-            }
-            else if (ac.equals("view")) {
-                url = "ViewCart.jsp";
-            }
-            else if (ac.equals("edit")) {
-                url = "UpdateCart";
-            }
-            else if (ac.equals("remove")) {
-                url = "RemoveCart";
-            }
-            request.getRequestDispatcher(url).forward(request, response);
+            String a = request.getParameter("id");
+            String b = request.getParameter("catename");
+            String c = request.getParameter("status");
+            int kq = CategoryDao.updateCategory(Integer.parseInt(a), b, Integer.parseInt(c));
+            response.sendRedirect("index2.jsp");
+        } catch(Exception e) {
+            e.printStackTrace();
         }
     }
 

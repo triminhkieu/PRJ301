@@ -11,12 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.FAQDao;
 
 /**
  *
  * @author Admin
  */
-public class MainController2 extends HttpServlet {
+public class SendFAQ extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +33,21 @@ public class MainController2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String url = "getAllItems";
-            String ac = request.getParameter("action");
-            if (ac == null) {
-                url = "getAllItems";
+            String ten = request.getParameter("name");
+            String noidung = request.getParameter("content");
+            String ma = request.getParameter("id");
+            if (ten == null || ten.isEmpty() || noidung.isEmpty() || noidung == null) {
+                request.setAttribute("ERROR", "you need fill out the form");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else {
+                int kq = FAQDao.InsertFAQ(ten, noidung, Integer.parseInt(ma));
+                if (kq > 0) {
+                    request.setAttribute("WARNING", "your question sent");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
             }
-            else if (ac.equals("add")) {
-                url = "addItem";
-            }
-            else if (ac.equals("view")) {
-                url = "ViewCart.jsp";
-            }
-            else if (ac.equals("edit")) {
-                url = "UpdateCart";
-            }
-            else if (ac.equals("remove")) {
-                url = "RemoveCart";
-            }
-            request.getRequestDispatcher(url).forward(request, response);
+        } catch(Exception e) {
+            e.printStackTrace();
         }
     }
 

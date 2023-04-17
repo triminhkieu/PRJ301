@@ -7,16 +7,19 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.CategoryDao;
+import model.dto.Category;
 
 /**
  *
  * @author Admin
  */
-public class MainController2 extends HttpServlet {
+public class LoadCategories2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +35,15 @@ public class MainController2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String url = "getAllItems";
-            String ac = request.getParameter("action");
-            if (ac == null) {
-                url = "getAllItems";
+            try {
+                ArrayList<Category> kq = CategoryDao.getCategories(1);
+                //luu kq vao request memory
+                request.setAttribute("result", kq); //ten la result va value la kq
+                //mo trang index.jsp de display kq
+                request.getRequestDispatcher("index2.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            else if (ac.equals("add")) {
-                url = "addItem";
-            }
-            else if (ac.equals("view")) {
-                url = "ViewCart.jsp";
-            }
-            else if (ac.equals("edit")) {
-                url = "UpdateCart";
-            }
-            else if (ac.equals("remove")) {
-                url = "RemoveCart";
-            }
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

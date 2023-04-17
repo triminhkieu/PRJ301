@@ -7,16 +7,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.dao.ItemDao;
+import model.dto.Item;
 
 /**
  *
  * @author Admin
  */
-public class MainController2 extends HttpServlet {
+public class LoadItems extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +36,14 @@ public class MainController2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String url = "getAllItems";
-            String ac = request.getParameter("action");
-            if (ac == null) {
-                url = "getAllItems";
-            }
-            else if (ac.equals("add")) {
-                url = "addItem";
-            }
-            else if (ac.equals("view")) {
-                url = "ViewCart.jsp";
-            }
-            else if (ac.equals("edit")) {
-                url = "UpdateCart";
-            }
-            else if (ac.equals("remove")) {
-                url = "RemoveCart";
-            }
-            request.getRequestDispatcher(url).forward(request, response);
+            //data tu la parameter luon la kieu string
+            String maloai = request.getParameter("cateid");
+            ArrayList<Item> kq = ItemDao.getItems(Integer.parseInt(maloai));
+            HttpSession session = request.getSession();
+            session.setAttribute("listItem", kq);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

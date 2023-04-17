@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class MainController2 extends HttpServlet {
+public class MainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +32,19 @@ public class MainController2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String url = "getAllItems";
-            String ac = request.getParameter("action");
-            if (ac == null) {
-                url = "getAllItems";
+            
+            String url = "LoadCategories";
+            String action = request.getParameter("action");
+            if (action == null) {
+                url ="LoadCategories";
+            } else if (action.equals("send")) {
+                url = "SendFAQ";
+            } else if (action.equals("loaditem")) {
+                url = "LoadItems";
             }
-            else if (ac.equals("add")) {
-                url = "addItem";
-            }
-            else if (ac.equals("view")) {
-                url = "ViewCart.jsp";
-            }
-            else if (ac.equals("edit")) {
-                url = "UpdateCart";
-            }
-            else if (ac.equals("remove")) {
-                url = "RemoveCart";
-            }
+            
             request.getRequestDispatcher(url).forward(request, response);
+            
         }
     }
 

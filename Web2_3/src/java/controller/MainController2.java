@@ -43,12 +43,6 @@ public class MainController2 extends HttpServlet {
             else if (ac.equals("view")) {
                 url = "ViewCart.jsp";
             }
-            else if (ac.equals("edit")) {
-                url = "UpdateCart";
-            }
-            else if (ac.equals("remove")) {
-                url = "RemoveCart";
-            }
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

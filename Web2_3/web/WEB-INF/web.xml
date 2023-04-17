@@ -36,14 +36,6 @@
         <servlet-name>addItem</servlet-name>
         <servlet-class>controller.addItem</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>UpdateCart</servlet-name>
-        <servlet-class>controller.UpdateCart</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RemoveCart</servlet-name>
-        <servlet-class>controller.RemoveCart</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoadCategories</servlet-name>
         <url-pattern>/LoadCategories</url-pattern>
@@ -79,14 +71,6 @@
     <servlet-mapping>
         <servlet-name>addItem</servlet-name>
         <url-pattern>/addItem</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateCart</servlet-name>
-        <url-pattern>/UpdateCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RemoveCart</servlet-name>
-        <url-pattern>/RemoveCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
