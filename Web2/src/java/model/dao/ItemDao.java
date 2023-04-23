@@ -49,7 +49,7 @@ public class ItemDao {
                         String catename = tmp.getString("CateName");
                         int status = tmp.getInt("Status");
                         Category cate = new Category(cateid, catename, status);
-                        Item it = new Item(d, b, c, cate);
+                        Item it = new Item(a, b, c, cate);
                         kq.add(it);
                     }
                 }

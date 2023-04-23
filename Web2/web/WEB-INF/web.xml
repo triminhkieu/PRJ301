@@ -94,6 +94,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>MainController2</welcome-file>
+        <welcome-file>MainController</welcome-file>
     </welcome-file-list>
 </web-app>
