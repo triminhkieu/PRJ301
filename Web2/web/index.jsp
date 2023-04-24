@@ -51,8 +51,8 @@
                 <p>item name: <%= it.getName()%></p>
                 <p>item price: <%= it.getPrice()%></p>
                 <p>item's cate name: <%= it.getCate().getName()%></p>
-                <p><input type="text" name="name"/></p>
-                <p><textarea name="content"></textarea></p>
+                <p><input type="text" name="name" placeholder="enter your name"/></p>
+                <p><textarea name="content" placeholder="enter your question" style="font-weight: bold"></textarea></p>
                 <input type="hidden" name="id" value="<%= it.getId() %>"/>
                 <p><input type="submit" value="send" name="action"/></p>
             </form>
